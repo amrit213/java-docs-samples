@@ -20,6 +20,7 @@ package org.openshift.quickstarts.undertow.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -37,6 +38,7 @@ import com.google.api.gax.rpc.ClientStream;
 import com.google.api.gax.rpc.ResponseObserver;
 import com.google.api.gax.rpc.StreamController;
 import com.google.cloud.speech.v1.RecognitionConfig;
+import com.google.cloud.speech.v1.SpeechClient;
 import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
 import com.google.cloud.speech.v1.StreamingRecognitionConfig;
 import com.google.cloud.speech.v1.StreamingRecognitionResult;
