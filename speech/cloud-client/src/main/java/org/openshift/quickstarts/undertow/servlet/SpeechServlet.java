@@ -18,6 +18,7 @@
 
 package org.openshift.quickstarts.undertow.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -66,7 +67,11 @@ public class SpeechServlet extends HttpServlet {
         
     	PrintWriter writer = resp.getWriter();
         writer.write("speak!");
-        
+        File file = new File("test.txt");
+        String path = file.getPath();
+        String abPath = file.getAbsolutePath();
+        String canPath = file.getCanonicalPath();
+        writer.write("path-"+path+";;;; abPath-"+abPath+";;;;; canPath-"+canPath);
     	ResponseObserver<StreamingRecognizeResponse> responseObserver = null;
         try (SpeechClient client = SpeechClient.create()) {
 
