@@ -85,13 +85,13 @@ public class SpeechServlet extends HttpServlet {
                     StreamingRecognitionResult result = response.getResultsList().get(0);
                     SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
                     System.out.printf("Transcript : %s\n", alternative.getTranscript());
-                    writer.write("speak2!");
+                    writer.write("speak2!"+alternative.getTranscript());
                   }
                 }
 
                 public void onError(Throwable t) {
                   System.out.println(t);
-                  writer.write("speak3!");
+                  writer.write("speak3!"+t.getMessage()+t.getStackTrace());
                 }
               };
 
@@ -154,7 +154,7 @@ public class SpeechServlet extends HttpServlet {
           }
         } catch (Exception e) {
           System.out.println(e);
-          writer.write("speak7!");
+          writer.write("speak7!"+e.getMessage()+e.getStackTrace());
         } finally{
         	writer.write("speak8!");
         	writer.close();
