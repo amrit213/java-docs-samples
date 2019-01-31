@@ -70,8 +70,8 @@ public class SpeechServlet extends HttpServlet {
     	PrintWriter writer = resp.getWriter();
         writer.write("speak!");
         //File file = new File("test.txt");
-        String content = new String(Files.readAllBytes(Paths.get("test.txt")));
-        writer.write("content::: "+content+";;;   cred-"+System.getenv().get("GOOGLE_APPLICATION_CREDENTIALS"));
+        //String content = new String(Files.readAllBytes(Paths.get("test.txt")));
+        //writer.write("content::: "+content+";;;   cred-"+System.getenv().get("GOOGLE_APPLICATION_CREDENTIALS"));
         
     	ResponseObserver<StreamingRecognizeResponse> responseObserver = null;
         try (SpeechClient client = SpeechClient.create()) {
