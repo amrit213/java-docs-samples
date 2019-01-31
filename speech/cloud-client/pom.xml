@@ -56,6 +56,12 @@
             <artifactId>jboss-logmanager</artifactId>
             <version>${version.jboss.logmanager}</version>
         </dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-speech -->
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-speech</artifactId>
+			<version>0.79.0-beta</version>
+		</dependency>
 
     </dependencies>
 
