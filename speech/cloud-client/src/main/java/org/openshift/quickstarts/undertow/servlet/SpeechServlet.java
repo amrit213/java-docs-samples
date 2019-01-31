@@ -21,6 +21,8 @@ package org.openshift.quickstarts.undertow.servlet;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
@@ -67,11 +69,10 @@ public class SpeechServlet extends HttpServlet {
         
     	PrintWriter writer = resp.getWriter();
         writer.write("speak!");
-        File file = new File("test.txt");
-        String path = file.getPath();
-        String abPath = file.getAbsolutePath();
-        String canPath = file.getCanonicalPath();
-        writer.write("path-"+path+";;;; abPath-"+abPath+";;;;; canPath-"+canPath);
+        //File file = new File("test.txt");
+        String content = new String(Files.readAllBytes(Paths.get("test.txt")));
+        writer.write("content::: "+content+";;;   cred-"+System.getenv().get("GOOGLE_APPLICATION_CREDENTIALS"));
+        
     	ResponseObserver<StreamingRecognizeResponse> responseObserver = null;
         try (SpeechClient client = SpeechClient.create()) {
 
