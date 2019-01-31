@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Stuart Douglas
  */
-public class SpeeechServlet extends HttpServlet {
+public class SpeechServlet extends HttpServlet {
 
     public static final String MESSAGE = "message";
 
