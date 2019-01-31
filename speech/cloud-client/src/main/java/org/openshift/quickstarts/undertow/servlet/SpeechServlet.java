@@ -150,9 +150,9 @@ public class SpeechServlet extends HttpServlet {
         responseObserver.onComplete();
     	
     	
-    	//PrintWriter writer = resp.getWriter();
-        //writer.write("speak!");
-        //writer.close();
+    	PrintWriter writer = resp.getWriter();
+        writer.write("speak!");
+        writer.close();
     }
 
     @Override
