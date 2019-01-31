@@ -56,7 +56,7 @@ public class ServletServer {
                             servlet("MessageServlet", MessageServlet.class)
                                     .addInitParam("message", "Hello World")
                                     .addMapping("/*"),
-                            servlet("MyServlet", SpeechServlet.class)
+                            servlet("SpeechServlet", SpeechServlet.class)
                                     .addInitParam("message", "MyServlet")
                                     .addMapping("/speak"));
 
