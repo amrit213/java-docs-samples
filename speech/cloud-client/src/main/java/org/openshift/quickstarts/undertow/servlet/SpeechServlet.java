@@ -64,6 +64,9 @@ public class SpeechServlet extends HttpServlet {
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         
+    	PrintWriter writer = resp.getWriter();
+        writer.write("speak!");
+        
     	ResponseObserver<StreamingRecognizeResponse> responseObserver = null;
         try (SpeechClient client = SpeechClient.create()) {
 
@@ -82,11 +85,13 @@ public class SpeechServlet extends HttpServlet {
                     StreamingRecognitionResult result = response.getResultsList().get(0);
                     SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
                     System.out.printf("Transcript : %s\n", alternative.getTranscript());
+                    writer.write("speak2!");
                   }
                 }
 
                 public void onError(Throwable t) {
                   System.out.println(t);
+                  writer.write("speak3!");
                 }
               };
 
@@ -118,6 +123,7 @@ public class SpeechServlet extends HttpServlet {
 
           if (!AudioSystem.isLineSupported(targetInfo)) {
             System.out.println("Microphone not supported");
+            writer.write("speak4!");
             //System.exit(0);
           }
           // Target data line captures the audio stream the microphone produces.
@@ -125,6 +131,7 @@ public class SpeechServlet extends HttpServlet {
           targetDataLine.open(audioFormat);
           targetDataLine.start();
           System.out.println("Start speaking");
+          writer.write("speak5!");
           long startTime = System.currentTimeMillis();
           // Audio Input Stream
           AudioInputStream audio = new AudioInputStream(targetDataLine);
@@ -134,6 +141,7 @@ public class SpeechServlet extends HttpServlet {
             audio.read(data);
             if (estimatedTime > 60000) { // 60 seconds
               System.out.println("Stop speaking.");
+              writer.write("speak6!");
               targetDataLine.stop();
               targetDataLine.close();
               break;
@@ -146,13 +154,15 @@ public class SpeechServlet extends HttpServlet {
           }
         } catch (Exception e) {
           System.out.println(e);
+          writer.write("speak7!");
+        } finally{
+        	writer.write("speak8!");
+        	writer.close();
         }
         responseObserver.onComplete();
     	
     	
-    	PrintWriter writer = resp.getWriter();
-        writer.write("speak!");
-        writer.close();
+    	
     }
 
     @Override
